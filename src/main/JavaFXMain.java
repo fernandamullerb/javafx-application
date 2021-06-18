@@ -1,7 +1,5 @@
 package main;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
