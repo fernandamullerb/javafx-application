@@ -53,8 +53,6 @@ public class TelaNotasController implements Initializable {
         double mediaAluno = (nota1 + nota2) / 2;
         String situacaoAluno = situacaoAluno(nota1, nota2, mediaAluno);
         
-        System.out.println("Aluno(a): " + nome + " | Média: " + mediaAluno + " | Situação: " + situacaoAluno);
-        
         File arq = ArquivoDeNotas.criarAquivo();
         ArquivoDeNotas.escreverArquivo(arq, nome, mediaAluno, situacaoAluno);
     }

@@ -16,9 +16,5 @@ public class Validacoes {
     
     public static boolean validarPreenchimentoNotas(ComboBox cbb, TextField txt1, TextField txt2) {      
         return (cbb.getValue().equals("") || txt1.getText().isEmpty() || txt2.getText().isEmpty());
-   }
-
-    
-    
-    
+   } 
 }
