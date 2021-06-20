@@ -1,7 +1,6 @@
 package main;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,34 +36,27 @@ public class TelaNotasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         String[] alunos = {"Fernanda Müller", "Reuel Freitas", "William Robert"};
         comboBoxNames.getItems().addAll(alunos);
+        Validacoes.validarTipoEntrada(textFieldAv1);
+        Validacoes.validarTipoEntrada(textFieldAv2);
     }
-
+    
+    @FXML
+    public void habilitarBotao() {
+        buttonConfirmar.setDisable(Validacoes.validarPreenchimentoNotas(comboBoxNames, textFieldAv1, textFieldAv2));
+    }
+    
     @FXML
     private void cadastrarNotas(ActionEvent event) throws IOException {
         String nome = comboBoxNames.getValue();
-        String av1 = textFieldAv1.getText();
-        String av2 = textFieldAv2.getText();
-
-        double notaConvertida1 = Double.parseDouble(av1);
-        double notaConvertida2 = Double.parseDouble(av2);
-        double mediaAluno = (notaConvertida1 + notaConvertida2) / 2;
-        String situacao = "";
-
-        if  (mediaAluno >= 7 && mediaAluno <= 10) {
-            situacao = "Aprovado(a)";
-        } else if (mediaAluno >= 0 && mediaAluno <7) {
-            situacao = "Reprovado(a)";
-        } else {
-            situacao = "Valor de notas inválido.";
-        }
+        double nota1 = Double.parseDouble(textFieldAv1.getText());
+        double nota2 = Double.parseDouble(textFieldAv2.getText());
+        double mediaAluno = (nota1 + nota2) / 2;
+        String situacaoAluno = situacaoAluno(nota1, nota2, mediaAluno);
         
-        System.out.println("Aluno(a): " + nome + " | Média: " + mediaAluno + " | Situação: " + situacao);
+        System.out.println("Aluno(a): " + nome + " | Média: " + mediaAluno + " | Situação: " + situacaoAluno);
         
-        File arq = new File("alunos.txt");
-        arq.createNewFile();
-        FileWriter escrita = new FileWriter(arq.getName(), true);
-        escrita.write("\nAluno(a): " + nome + " | Média: " + mediaAluno + " | Situação: " + situacao);
-        escrita.close();
+        File arq = ArquivoDeNotas.criarAquivo();
+        ArquivoDeNotas.escreverArquivo(arq, nome, mediaAluno, situacaoAluno);
     }
     
     @FXML
@@ -72,7 +64,19 @@ public class TelaNotasController implements Initializable {
         comboBoxNames.setValue("");
         textFieldAv1.setText("");
         textFieldAv2.setText("");
+        buttonConfirmar.setDisable(true);
     }
-
+    
+    public static String situacaoAluno(double nota1, double nota2, double mediaAluno) {
+        String situacao = "";
+        if  (mediaAluno >= 7 && mediaAluno <= 10) {
+            situacao = "Aprovado(a)";
+        } else if (mediaAluno >= 0 && mediaAluno <7) {
+            situacao = "Reprovado(a)";
+        } else {
+            situacao = "Valor de notas inválido.";
+        }
+        return situacao;
+    }
 }
 

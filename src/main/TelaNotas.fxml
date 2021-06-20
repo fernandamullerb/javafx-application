@@ -32,10 +32,10 @@
       <Label layoutX="162.0" layoutY="138.0" opacity="0.5" prefHeight="19.0" prefWidth="150.0" text="Selecione o nome do aluno" textAlignment="CENTER" textFill="#062e51" />
       <Label layoutX="181.0" layoutY="218.0" opacity="0.5" prefHeight="19.0" prefWidth="127.0" text="Insira o valor da Av. 01" textAlignment="CENTER" textFill="#062e51" />
       <Label layoutX="181.0" layoutY="300.0" opacity="0.5" prefHeight="19.0" prefWidth="127.0" text="Insira o valor da Av. 02" textAlignment="CENTER" textFill="#062e51" />
-      <Button fx:id="buttonConfirmar" layoutX="129.0" layoutY="352.0" mnemonicParsing="false" onAction="#cadastrarNotas" onMouseClicked="#limparCampos" prefHeight="42.0" prefWidth="90.0" text="CONFIRMAR" textFill="#062e51">
+      <Button fx:id="buttonConfirmar" disable="true" layoutX="129.0" layoutY="352.0" mnemonicParsing="false" onAction="#cadastrarNotas" onMouseClicked="#limparCampos" prefHeight="42.0" prefWidth="90.0" text="CONFIRMAR" textFill="#062e51">
       </Button>
-      <TextField fx:id="textFieldAv1" layoutX="208.0" layoutY="194.0" prefHeight="25.0" prefWidth="59.0" />
-      <TextField fx:id="textFieldAv2" layoutX="208.0" layoutY="276.0" prefHeight="25.0" prefWidth="59.0" />
-      <ComboBox fx:id="comboBoxNames" layoutX="162.0" layoutY="113.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #CCCCCC;" />
+      <TextField fx:id="textFieldAv1" layoutX="208.0" layoutY="194.0" onKeyReleased="#habilitarBotao" prefHeight="25.0" prefWidth="59.0" />
+      <TextField fx:id="textFieldAv2" layoutX="208.0" layoutY="276.0" onKeyReleased="#habilitarBotao" prefHeight="25.0" prefWidth="59.0" />
+      <ComboBox fx:id="comboBoxNames" layoutX="162.0" layoutY="113.0" onKeyReleased="#habilitarBotao" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #CCCCCC;" />
    </children>
 </AnchorPane>
